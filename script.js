@@ -259,12 +259,22 @@ function addGlobalEvents() {
   });
 
   const sidebar = document.getElementById("sidebar");
+  const sidebarOverlay = document.getElementById("sidebarOverlay");
+  
   document.getElementById("openSidebar")?.addEventListener("click", () => {
     sidebar?.classList.add("show");
+    sidebarOverlay?.classList.add("show");
   });
 
   document.getElementById("closeSidebar")?.addEventListener("click", () => {
     sidebar?.classList.remove("show");
+    sidebarOverlay?.classList.remove("show");
+  });
+  
+  // Cerrar sidebar al hacer click en el overlay
+  sidebarOverlay?.addEventListener("click", () => {
+    sidebar?.classList.remove("show");
+    sidebarOverlay?.classList.remove("show");
   });
 
   document.querySelectorAll(".nav-link").forEach(link => {
@@ -272,6 +282,7 @@ function addGlobalEvents() {
       document.querySelectorAll(".nav-link").forEach(item => item.classList.remove("active"));
       link.classList.add("active");
       sidebar?.classList.remove("show");
+      sidebarOverlay?.classList.remove("show");
     });
   });
 }

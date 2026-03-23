@@ -46,6 +46,17 @@ body {
   overflow-x: hidden; /* Cambiado a hidden para evitar scroll horizontal por texto largo */
 }
 
+/* Overlay para sidebar en móvil */
+.sidebar-overlay {
+  display: none;
+}
+
+@media (max-width: 980px) {
+  .sidebar-overlay {
+    display: block;
+  }
+}
+
 /* Evitar overflow horizontal en todo el sitio */
 html, .app-shell, .main-panel, .content-area, .section-block {
   max-width: 100%;
@@ -427,7 +438,7 @@ code { background: var(--primary-soft); color: var(--primary); padding: 2px 8px;
   min-width: 0;
 }
 .mobile-close, .menu-btn {
-  display: none; border: none; background: rgba(255,255,255,.12); color: white; width: 42px; height: 42px; border-radius: 12px;
+  display: inline-flex; align-items: center; justify-content: center; border: none; background: rgba(37,99,235,.12); color: var(--primary); width: 42px; height: 42px; border-radius: 12px; cursor: pointer;
 }
 .nav-menu { 
   display: grid; 
@@ -1042,21 +1053,64 @@ tbody tr:hover { background: rgba(37,99,235,.04); }
     box-sizing: border-box;
   }
 }
-@media (max-width: 980px) {
+/* ================================================
+   MEDIA QUERIES RESPONSIVE
+   ================================================ */
+
+/* Tablet Portrait (768px - 979px) - Sidebar visible como en desktop */
+@media (min-width: 768px) and (max-width: 979px) {
   .app-shell {
-    display: block;
-    min-height: 100vh;
+    display: grid !important;
+    grid-template-columns: 240px 1fr;
   }
 
   .sidebar {
-    position: fixed;
+    position: sticky !important;
     left: 0;
     top: 0;
-    bottom: 0;
-    width: min(85vw, 300px);
-    transform: translateX(-100%);
-    transition: transform .28s ease;
-    z-index: 1200;
+    transform: translateX(0) !important;
+    width: 240px;
+  }
+
+  .sidebar-overlay {
+    display: none !important;
+  }
+
+  .main-panel {
+    margin-left: 0;
+  }
+
+  .menu-btn,
+  .mobile-close {
+    display: none !important;
+  }
+
+  .content-area {
+    padding: 16px;
+  }
+}
+
+/* Smartphones (menor a 768px) - Contenido simple sin menú */
+@media (max-width: 767px) {
+  .app-shell {
+    display: block !important;
+    min-height: 100vh;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* Ocultar sidebar completamente en móvil - contenido empieza desde la izquierda */
+  .sidebar {
+    display: none !important;
+  }
+
+  .sidebar-overlay {
+    display: none !important;
+  }
+
+  .menu-btn {
+    display: none !important;
   }
 
   .sidebar.show {
@@ -1064,13 +1118,236 @@ tbody tr:hover { background: rgba(37,99,235,.04); }
   }
 
   .main-panel {
-    margin-left: 0;
+    margin-left: 0 !important;
+    width: 100% !important;
+    max-width: 100%;
+    padding: 0;
+  }
+
+  /* Topbar para smartphone */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 12px !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 8px !important;
+    background: var(--surface) !important;
+    border-bottom: 1px solid var(--border);
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+
+  .topbar-left {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .topbar-left h1 {
+    font-size: 0.95rem !important;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 140px;
+  }
+
+  .eyebrow {
+    display: none !important;
+  }
+
+  .topbar-right {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+  }
+
+  .user-chip {
+    padding: 6px 8px !important;
+    min-width: auto;
+  }
+
+  .user-chip > i {
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  .user-chip > div {
+    display: none !important;
+  }
+
+  .menu-btn {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    background: var(--primary-soft);
+    border: none;
+    color: var(--primary);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .mobile-close {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+
+  /* Contenido principal */
+  .content-area {
+    padding: 12px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  .section-block {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+  }
+
+  /* Ajustes para smartphone */
+  .split-layout,
+  .chart-layout {
+    grid-template-columns: 1fr !important;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .stats-grid,
+  .teacher-stats {
+    grid-template-columns: 1fr !important;
+    gap: 10px;
+  }
+
+  /* Tarjetas */
+  .card {
+    padding: 12px !important;
+    border-radius: 12px !important;
+    margin-bottom: 10px;
+  }
+
+  .card-head {
+    margin-bottom: 10px;
+  }
+
+  .card-head h3 {
+    font-size: 1rem;
+  }
+
+  /* Tablas */
+  .table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  table {
+    min-width: 500px;
+    font-size: 0.75rem;
+  }
+
+  thead th,
+  tbody td {
+    padding: 8px 6px;
+    white-space: nowrap;
+  }
+
+  /* Toolbar */
+  .toolbar {
+    flex-direction: column;
+    gap: 8px;
     width: 100%;
   }
 
-  .mobile-close,
-  .menu-btn {
-    display: inline-grid;
-    place-items: center;
+  .toolbar input,
+  .toolbar select {
+    width: 100%;
+    min-width: 0;
+  }
+
+  /* Botones */
+  .btn {
+    padding: 10px 14px;
+    font-size: 0.85rem;
+    min-height: 40px;
+  }
+
+  .btn-sm {
+    padding: 5px 8px;
+    font-size: 0.7rem;
+  }
+
+  /* Formularios */
+  .form-grid {
+    gap: 12px;
+  }
+
+  .field-full {
+    grid-column: 1;
+  }
+
+  .input-wrap {
+    padding: 0 10px;
+  }
+
+  .field input,
+  .field select,
+  .field textarea {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  /* Estadísticas */
+  .stat-card {
+    padding: 10px;
+    border-radius: 12px;
+  }
+
+  .stat-card h4 {
+    font-size: 0.7rem;
+  }
+
+  .stat-card .value {
+    font-size: 1.2rem;
+  }
+
+  /* Títulos de sección */
+  .section-title-row h2 {
+    font-size: 1.1rem;
+  }
+
+  /* Badge y pills */
+  .status-pill,
+  .priority-pill,
+  .badge {
+    padding: 3px 6px;
+    font-size: 0.65rem;
+  }
+
+  /* Admin actions */
+  .admin-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px;
   }
 }
