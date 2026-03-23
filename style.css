@@ -1090,7 +1090,7 @@ tbody tr:hover { background: rgba(37,99,235,.04); }
   }
 }
 
-/* Smartphones (menor a 768px) - Contenido simple sin menú */
+/* Smartphones (menor a 768px) - Menú hamburguesa */
 @media (max-width: 767px) {
   .app-shell {
     display: block !important;
@@ -1100,21 +1100,55 @@ tbody tr:hover { background: rgba(37,99,235,.04); }
     overflow-x: hidden;
   }
 
-  /* Ocultar sidebar completamente en móvil - contenido empieza desde la izquierda */
+  /* Sidebar como menú lateral */
   .sidebar {
-    display: none !important;
-  }
-
-  .sidebar-overlay {
-    display: none !important;
-  }
-
-  .menu-btn {
-    display: none !important;
+    position: fixed !important;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 280px;
+    max-width: 85%;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1200;
+    display: flex !important;
+    overflow-y: auto;
   }
 
   .sidebar.show {
     transform: translateX(0);
+  }
+
+  /* Overlay */
+  .sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1100;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    display: block !important;
+  }
+
+  .sidebar-overlay.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Botón menú */
+  .menu-btn {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: var(--primary-soft);
+    border: none;
+    color: var(--primary);
+    cursor: pointer;
+    flex-shrink: 0;
   }
 
   .main-panel {
