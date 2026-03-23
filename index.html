@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Centro de Impresiones Escolares | Acceso</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="auth-body">
+
+  <main class="auth-layout fade-in">
+    <section class="auth-left">
+      <div class="brand-block">
+        <div class="brand-icon">
+          <img src="galeria/image1.png" alt="Logo Escuela" style="width:100%;height:100%;object-fit:contain;">
+        </div>
+        <div>
+          <span class="eyebrow">Plataforma institucional</span>
+          <h1>Centro de Impresiones Escolares</h1>
+          <p>
+            Sistema profesional para que los maestros envíen solicitudes de impresión
+            y la oficina gestione, organice y entregue cada trabajo de forma rápida.
+          </p>
+        </div>
+      </div>
+
+      <div class="hero-cards">
+        <article class="hero-card glass">
+          <i class="fa-solid fa-file-arrow-up"></i>
+          <div>
+            <h3>Envío rápido</h3>
+            <p>Sube archivos, define copias, urgencia y detalles en segundos.</p>
+          </div>
+        </article>
+
+        <article class="hero-card glass">
+          <i class="fa-solid fa-list-check"></i>
+          <div>
+            <h3>Seguimiento completo</h3>
+            <p>Visualiza estados, historial y avisos desde cualquier dispositivo.</p>
+          </div>
+        </article>
+
+        <article class="hero-card glass">
+          <i class="fa-solid fa-chart-line"></i>
+          <div>
+            <h3>Panel administrativo</h3>
+            <p>Dashboard con métricas, filtros, control de estados y reportes.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="auth-right">
+      <div class="auth-card">
+        <div class="auth-header">
+          <span class="eyebrow">Inicio de sesión</span>
+          <h2>Acceder al sistema</h2>
+          <p>Ingresa con tu correo institucional y contraseña.</p>
+        </div>
+
+        <div id="authMessage" class="auth-message" style="display:none;"></div>
+
+        <form id="loginForm" class="auth-form">
+          <div class="role-switch">
+            <button type="button" class="role-btn active" data-role="maestro">
+              <i class="fa-solid fa-chalkboard-user"></i> Maestro
+            </button>
+            <button type="button" class="role-btn" data-role="admin">
+              <i class="fa-solid fa-building-user"></i> Oficina / Admin
+            </button>
+          </div>
+
+          <input type="hidden" id="role" value="maestro" />
+
+          <label class="field">
+            <span>Correo institucional</span>
+            <div class="input-wrap">
+              <i class="fa-regular fa-envelope"></i>
+              <input
+                type="email"
+                id="email"
+                placeholder="de123456@miescuela.pr"
+                autocomplete="email"
+                required
+              />
+            </div>
+            <small class="helper">Formato: de[números]@miescuela.pr</small>
+          </label>
+
+          <label class="field">
+            <span>Tu nombre completo</span>
+            <div class="input-wrap">
+              <i class="fa-solid fa-user"></i>
+              <input
+                type="text"
+                id="userName"
+                placeholder="Ej. María López García"
+                autocomplete="name"
+              />
+            </div>
+            <small class="helper">Opcional. Solo para mostrar en el panel si aplica.</small>
+          </label>
+
+          <label class="field">
+            <span>Contraseña</span>
+            <div class="input-wrap">
+              <i class="fa-solid fa-lock"></i>
+              <input
+                type="password"
+                id="password"
+                placeholder="Ingresa tu contraseña"
+                autocomplete="current-password"
+                required
+              />
+              <button type="button" id="togglePassword" class="icon-btn" aria-label="Mostrar contraseña">
+                <i class="fa-regular fa-eye"></i>
+              </button>
+            </div>
+          </label>
+
+          <div class="info-box">
+            <h4><i class="fa-solid fa-info-circle"></i> Correo institucional</h4>
+            <p>Usa tu correo institucional proporcionado por la escuela.</p>
+            <p>Ejemplo: <code>de123456@miescuela.pr</code></p>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-full" id="loginBtn">
+            <i class="fa-solid fa-right-to-bracket"></i>
+            <span>Entrar al sistema</span>
+          </button>
+
+          <p id="loginError" class="error-text"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

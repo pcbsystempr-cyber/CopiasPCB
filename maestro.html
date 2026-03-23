@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel del Maestro | Centro de Impresiones Escolares</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="app-body">
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-top">
+        <div class="brand-mini">
+          <div class="brand-icon small">
+            <img src="galeria/image1.png" alt="Logo Escuela" style="width:100%;height:100%;object-fit:contain;">
+          </div>
+          <div>
+            <h2>Panel</h2>
+            <p>Maestro</p>
+          </div>
+        </div>
+
+        <button id="closeSidebar" class="mobile-close">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <nav class="nav-menu">
+        <a href="#dashboard" class="nav-link active"><i class="fa-solid fa-table-columns"></i> Resumen</a>
+        <a href="#nuevaSolicitud" class="nav-link"><i class="fa-solid fa-square-plus"></i> Nueva solicitud</a>
+        <a href="#misSolicitudes" class="nav-link"><i class="fa-solid fa-folder-open"></i> Mis solicitudes</a>
+        <a href="#historial" class="nav-link"><i class="fa-solid fa-clock-rotate-left"></i> Historial</a>
+        <a href="#notificaciones" class="nav-link"><i class="fa-solid fa-bell"></i> Notificaciones</a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <button id="themeToggle" class="btn btn-soft btn-full">
+          <i class="fa-regular fa-moon"></i> Modo oscuro
+        </button>
+        <button id="logoutBtn" class="btn btn-danger btn-full">
+          <i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión
+        </button>
+      </div>
+    </aside>
+
+    <div class="main-panel">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button id="openSidebar" class="menu-btn">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div>
+            <span class="eyebrow">Centro de Impresiones Escolares</span>
+            <h1><span id="welcomeText">Bienvenido</span>, <span id="teacherName">Maestro</span></h1>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <div class="user-chip">
+            <i class="fa-solid fa-chalkboard-user"></i>
+            <div>
+              <strong id="teacherNameChip">Maestro</strong>
+              <span id="teacherEmail">de123456@miescuela.pr</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="content-area">
+        <section id="dashboard" class="section-block">
+          <div class="section-title-row">
+            <div>
+              <span class="eyebrow">Resumen</span>
+              <h2>Panel principal</h2>
+            </div>
+          </div>
+
+          <div class="stats-grid teacher-stats" id="teacherStats"></div>
+        </section>
+
+        <section id="nuevaSolicitud" class="section-block split-layout">
+          <div class="card form-card">
+            <div class="card-head">
+              <div>
+                <span class="eyebrow">Formulario</span>
+                <h3>Nueva solicitud de impresión</h3>
+              </div>
+            </div>
+
+            <form id="requestForm" class="request-form">
+              <div class="form-grid">
+                <label class="field">
+                  <span>Asunto / nombre del documento</span>
+                  <input type="text" id="documentName" placeholder="Ej. Examen de Matemáticas 11-2" required>
+                </label>
+
+                <label class="field">
+                  <span>Cantidad de copias</span>
+                  <input type="number" id="copies" placeholder="Ej. 35" min="1" required>
+                </label>
+
+                <label class="field">
+                  <span>Tipo de impresión</span>
+                  <select id="printType" required>
+                    <option value="">Selecciona</option>
+                    <option value="Blanco y negro">Blanco y negro</option>
+                    <option value="A color">A color</option>
+                  </select>
+                </label>
+
+                <label class="field">
+                  <span>Tamaño de papel</span>
+                  <select id="paperSize" required>
+                    <option value="">Selecciona</option>
+                    <option value="Carta">Carta</option>
+                    <option value="Legal">Legal</option>
+                    <option value="Tabloide">Tabloide</option>
+                  </select>
+                </label>
+
+                <label class="field">
+                  <span>Formato de impresión</span>
+                  <select id="printFormat" required>
+                    <option value="">Selecciona</option>
+                    <option value="Una cara">Una cara</option>
+                    <option value="Doble cara">Doble cara</option>
+                  </select>
+                </label>
+
+                <label class="field">
+                  <span>Nivel de urgencia</span>
+                  <select id="urgency" required>
+                    <option value="">Selecciona</option>
+                    <option value="Baja">Baja</option>
+                    <option value="Media">Media</option>
+                    <option value="Alta">Alta</option>
+                  </select>
+                </label>
+
+                <label class="field field-full">
+                  <span>Fecha y hora en que necesita el material</span>
+                  <input type="datetime-local" id="neededAt" required>
+                </label>
+
+                <label class="field field-full">
+                  <span>Archivo(s)</span>
+                  <input type="file" id="files" multiple accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.jpg,.jpeg,.png">
+                  <small class="helper">Para la demo se guardan solo los nombres de los archivos seleccionados.</small>
+                </label>
+
+                <label class="field field-full">
+                  <span>Instrucciones adicionales</span>
+                  <textarea id="instructions" rows="4" placeholder="Ej. Imprimir engrapado, separar por grupos, incluir portada..."></textarea>
+                </label>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">
+                  <i class="fa-solid fa-paper-plane"></i>
+                  Enviar solicitud
+                </button>
+                <button type="reset" class="btn btn-soft">
+                  <i class="fa-solid fa-rotate-left"></i>
+                  Limpiar
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div class="card preview-card">
+            <div class="card-head">
+              <div>
+                <span class="eyebrow">Vista previa</span>
+                <h3>Resumen antes de enviar</h3>
+              </div>
+            </div>
+
+            <div id="previewContent" class="preview-content empty-preview">
+              <i class="fa-regular fa-file-lines"></i>
+              <p>Completa el formulario para ver aquí el resumen de la solicitud.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="misSolicitudes" class="section-block">
+          <div class="section-title-row wrap">
+            <div>
+              <span class="eyebrow">Seguimiento</span>
+              <h2>Mis solicitudes</h2>
+            </div>
+
+            <div class="toolbar">
+              <input type="text" id="teacherSearch" placeholder="Buscar por documento...">
+
+              <select id="teacherFilterStatus">
+                <option value="">Todos los estados</option>
+                <option value="Pendiente">Pendiente</option>
+                <option value="En proceso">En proceso</option>
+                <option value="Impreso">Impreso</option>
+                <option value="Listo para recoger">Listo para recoger</option>
+                <option value="Entregado">Entregado</option>
+                <option value="Cancelado">Cancelado</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="table-card">
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Documento</th>
+                    <th>Copias</th>
+                    <th>Urgencia</th>
+                    <th>Estado</th>
+                    <th>Fecha envío</th>
+                    <th>Fecha necesaria</th>
+                    <th>Archivo</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody id="teacherRequestsTable"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section id="historial" class="section-block">
+          <div class="section-title-row">
+            <div>
+              <span class="eyebrow">Trazabilidad</span>
+              <h2>Historial de seguimiento</h2>
+            </div>
+          </div>
+          <div id="teacherHistory" class="timeline"></div>
+        </section>
+
+        <section id="notificaciones" class="section-block">
+          <div class="section-title-row">
+            <div>
+              <span class="eyebrow">Alertas</span>
+              <h2>Notificaciones recientes</h2>
+            </div>
+          </div>
+          <div id="teacherNotifications" class="notifications-list"></div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <div id="toastContainer" class="toast-container"></div>
+  <div id="modalContainer"></div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

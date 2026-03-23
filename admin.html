@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel Administrativo | Centro de Impresiones Escolares</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="admin-simple.css">
+</head>
+<body class="app-body">
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-top">
+        <div class="brand-mini">
+          <div class="brand-icon small">
+            <img src="galeria/image1.png" alt="Logo" style="width:100%;height:100%;object-fit:contain;">
+          </div>
+          <div>
+            <h2>Panel</h2>
+            <p>Admin</p>
+          </div>
+        </div>
+        <button id="closeSidebar" class="mobile-close">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <nav class="nav-menu">
+        <a href="#dashboard" class="nav-link active"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+        <a href="#solicitudes" class="nav-link"><i class="fa-solid fa-print"></i> Solicitudes</a>
+        <a href="#historialGeneral" class="nav-link"><i class="fa-solid fa-clock-rotate-left"></i> Historial</a>
+        <a href="#alertasAdmin" class="nav-link"><i class="fa-solid fa-bell"></i> Alertas</a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <button id="themeToggle" class="btn btn-soft btn-full">
+          <i class="fa-regular fa-moon"></i> Modo oscuro
+        </button>
+        <button id="logoutBtn" class="btn btn-danger btn-full">
+          <i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión
+        </button>
+      </div>
+    </aside>
+
+    <div class="main-panel">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button id="openSidebar" class="menu-btn">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div>
+            <span class="eyebrow">Oficina / Administrador</span>
+            <h1>Gestión de solicitudes de impresión</h1>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <div class="user-chip">
+            <i class="fa-solid fa-building-user"></i>
+            <div>
+              <strong id="adminName">Administrador</strong>
+              <span>Cuenta activa</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="content-area">
+        <section id="dashboard" class="section-block">
+          <div class="section-title-row">
+            <div>
+              <span class="eyebrow">Resumen general</span>
+              <h2>Dashboard administrativo</h2>
+            </div>
+          </div>
+
+          <div class="stats-grid" id="adminStats"></div>
+
+          <div class="split-layout chart-layout">
+            <div class="card chart-card">
+              <div class="card-head">
+                <div>
+                  <span class="eyebrow">Distribución</span>
+                  <h3>Solicitudes por estado</h3>
+                </div>
+              </div>
+              <canvas id="statusChart" height="220"></canvas>
+            </div>
+
+            <div class="card chart-card">
+              <div class="card-head">
+                <div>
+                  <span class="eyebrow">Carga por docente</span>
+                  <h3>Solicitudes por maestro</h3>
+                </div>
+              </div>
+              <canvas id="teacherChart" height="220"></canvas>
+            </div>
+          </div>
+        </section>
+
+        <section id="solicitudes" class="section-block">
+          <div class="section-title-row wrap">
+            <div>
+              <span class="eyebrow">Gestión central</span>
+              <h2>Todas las solicitudes</h2>
+            </div>
+
+            <div class="toolbar admin-toolbar">
+              <input type="text" id="adminSearch" placeholder="Buscar por maestro o documento...">
+
+              <select id="adminFilterStatus">
+                <option value="">Todos los estados</option>
+                <option value="Pendiente">Pendiente</option>
+                <option value="En proceso">En proceso</option>
+                <option value="Impreso">Impreso</option>
+                <option value="Listo para recoger">Listo para recoger</option>
+                <option value="Entregado">Entregado</option>
+                <option value="Cancelado">Cancelado</option>
+              </select>
+
+              <select id="adminSort">
+                <option value="newest">Más recientes</option>
+                <option value="oldest">Más antiguas</option>
+                <option value="priority">Por prioridad</option>
+                <option value="teacher">Por maestro</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="table-card">
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Maestro</th>
+                    <th>Documento</th>
+                    <th>Archivo</th>
+                    <th>Copias</th>
+                    <th>Tipo</th>
+                    <th>Urgencia</th>
+                    <th>Estado</th>
+                    <th>Fecha solicitud</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody id="adminRequestsTable"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section id="historialGeneral" class="section-block">
+          <div class="section-title-row">
+            <div>
+              <span class="eyebrow">Seguimiento</span>
+              <h2>Historial general</h2>
+            </div>
+          </div>
+          <div id="adminHistory" class="timeline"></div>
+        </section>
+
+        <section id="alertasAdmin" class="section-block">
+          <div class="section-title-row">
+            <div>
+              <span class="eyebrow">Mensajes del sistema</span>
+              <h2>Alertas recientes</h2>
+            </div>
+          </div>
+          <div id="adminNotifications" class="notifications-list"></div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <div id="toastContainer" class="toast-container"></div>
+  <div id="modalContainer"></div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

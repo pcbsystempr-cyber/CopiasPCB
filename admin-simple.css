@@ -1,0 +1,473 @@
+.app-shell { 
+  min-height: 100vh; 
+  display: grid; 
+  grid-template-columns: 290px 1fr; 
+}
+
+.sidebar {
+  background: linear-gradient(180deg, #0f172a, #13213d 55%, #0f172a);
+  color: white;
+  padding: 22px 18px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.brand-mini { 
+  display: flex; 
+  gap: 12px; 
+  align-items: center; 
+}
+.brand-mini h2 { 
+  margin: 0; 
+}
+.brand-mini p { 
+  margin: 2px 0 0; 
+  color: rgba(255,255,255,.7); 
+}
+
+.sidebar-top { 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+}
+
+.mobile-close, .menu-btn {
+  display: none;
+  border: none;
+  background: rgba(255,255,255,.12);
+  color: white;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+}
+
+.nav-menu { 
+  display: grid; 
+  gap: 8px; 
+}
+
+.nav-link {
+  color: rgba(255,255,255,.8);
+  padding: 14px 14px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background: rgba(255,255,255,.1);
+  color: white;
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+  display: grid;
+  gap: 10px;
+}
+
+.main-panel {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  background: rgba(244,247,251,.7);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  padding: 22px 28px;
+}
+
+body.dark .topbar {
+  background: rgba(11,18,32,.7);
+}
+
+.topbar-left { 
+  display: flex; 
+  align-items: center; 
+  gap: 16px; 
+}
+.topbar-left h1 { 
+  margin: 0; 
+  font-size: clamp(1.3rem, 2vw, 1.9rem); 
+}
+
+.topbar-right { 
+  display: flex; 
+  align-items: center; 
+  gap: 12px; 
+}
+
+.user-chip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 10px 14px;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+
+.user-chip i { 
+  color: var(--primary); 
+}
+
+.user-chip strong { 
+  display: block; 
+}
+
+.user-chip span {
+  color: var(--muted);
+  font-size: .9rem;
+}
+
+.content-area {
+  padding: 28px;
+  display: grid;
+  gap: 26px;
+}
+
+.section-block { 
+  display: grid; 
+  gap: 18px; 
+}
+
+.section-title-row {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.section-title-row.wrap { 
+  flex-wrap: wrap; 
+}
+
+.section-title-row h2 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.toolbar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.card, .table-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(16px);
+}
+
+.card { 
+  padding: 20px; 
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.card-head h3 { 
+  margin: 0; 
+}
+
+.split-layout {
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: 20px;
+}
+
+.chart-layout {
+  grid-template-columns: 1fr 1fr;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.field-full {
+  grid-column: 1 / -1;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+
+.preview-content {
+  min-height: 440px;
+  background: linear-gradient(180deg, var(--bg-soft), transparent);
+  border: 1px dashed var(--border);
+  border-radius: 18px;
+  padding: 18px;
+}
+
+.empty-preview {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  color: var(--muted);
+}
+
+.empty-preview i {
+  font-size: 2.8rem;
+  margin-bottom: 8px;
+}
+
+.preview-list { 
+  display: grid; 
+  gap: 12px; 
+}
+
+.preview-item {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: var(--surface-solid);
+  border: 1px solid var(--border);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.teacher-stats {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.stat-card {
+  background: linear-gradient(180deg, var(--surface), rgba(255,255,255,.55));
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 18px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  position: relative;
+}
+
+.stat-card::after {
+  content: '';
+  position: absolute;
+  right: -20px;
+  top: -20px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--primary-soft);
+}
+
+.stat-card h4 {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: .92rem;
+}
+
+.stat-card .value {
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.stat-card .meta {
+  color: var(--muted);
+  font-size: .9rem;
+}
+
+.table-card { 
+  padding: 8px; 
+}
+
+.table-wrap { 
+  overflow: auto; 
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 1080px;
+}
+
+thead th {
+  text-align: left;
+  padding: 16px 14px;
+  color: var(--muted);
+  font-size: .85rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  border-bottom: 1px solid var(--border);
+}
+
+tbody td {
+  padding: 16px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+tbody tr:hover {
+  background: rgba(37,99,235,.04);
+}
+
+/* =========================================================
+   ESTILOS PARA DESCARGA DE ARCHIVOS
+========================================================= */
+
+.file-download-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  margin: 2px 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.file-download-link:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  color: white;
+}
+
+.file-download-link i {
+  font-size: 14px;
+}
+
+.file-name-only {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.file-name-only i {
+  color: #9ca3af;
+}
+
+.text-muted {
+  color: #9ca3af;
+  font-style: italic;
+}
+/* =========================================
+   DISEÑO ESPACIADO Y PROFESIONAL
+   ========================================= */
+
+.solicitud-card {
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espacio entre datos y botones */
+}
+
+/* --- SECCIÓN DE DATOS (LO VERDE) --- */
+.datos-superiores {
+    display: grid;
+    /* Creamos columnas automáticas que no se aprietan */
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); 
+    gap: 20px;
+    align-items: start;
+}
+
+.grupo-dato {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.label-mini {
+    font-size: 11px;
+    font-weight: 800;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.valor-texto {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1e293b;
+    line-height: 1.4;
+}
+
+/* --- ARCHIVO (ESTILO BOTÓN AZULADO) --- */
+.archivo-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    background: #eff6ff;
+    color: #2563eb;
+    border-radius: 8px;
+    font-size: 13px;
+    text-decoration: none;
+    border: 1px solid #dbeafe;
+}
+
+/* --- SECCIÓN DE BOTONES (ABAJO) --- */
+.acciones-footer {
+    display: flex;
+    flex-wrap: wrap; /* Para que si no caben, bajen ordenadamente */
+    gap: 10px;
+    padding-top: 15px;
+    border-top: 1px solid #f1f5f9;
+}
+
+.btn-accion {
+    flex: 1; /* Todos del mismo tamaño */
+    min-width: 120px;
+    padding: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    background: #fff;
+    color: #475569;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.2s;
+}
+
+/* Colores para estados rápidos */
+.btn-ver { background: #f8fafc; color: #6366f1; border-color: #e0e7ff; }
+.btn-proceso { background: #fffbeb; color: #d97706; border-color: #fef3c7; }
+.btn-listo { background: #f0fdf4; color: #16a34a; border-color: #dcfce7; }
