@@ -1,3 +1,37 @@
+.btn-back-pcbsystem {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  z-index: 100;
+}
+
+.btn-back-pcbsystem:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateX(-2px);
+}
+
+@media (max-width: 980px) {
+  .btn-back-pcbsystem {
+    position: fixed;
+    top: 20px;
+    left: 12px;
+    z-index: 1000;
+  }
+}
+
 :root {
   --bg: #f4f7fb;
   --bg-soft: #eef3f9;
@@ -93,9 +127,11 @@ button { cursor: pointer; }
 .auth-body { min-height: 100vh; }
 .auth-layout {
   min-height: 100vh; display: grid; grid-template-columns: 1.1fr .9fr;
+  position: relative;
 }
 .auth-left {
-  padding: 56px; color: white;
+  padding: 56px;
+  padding-top: 80px; color: white;
   background:
     linear-gradient(135deg, rgba(2,6,23,.7), rgba(29,78,216,.7)),
     linear-gradient(120deg, #163985, #2563eb 55%, #1e40af);
@@ -759,6 +795,9 @@ tbody tr:hover { background: rgba(37,99,235,.04); }
 
 /* Tablet Portrait */
 @media (max-width: 980px) {
+  .auth-left {
+    padding-top: 56px;
+  }
   .auth-layout { grid-template-columns: 1fr; }
   .auth-left { display: none; }
   .app-shell { 
